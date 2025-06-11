@@ -1411,12 +1411,7 @@ class _ShadCalendarState extends State<ShadCalendar> {
           final labelNavigation = Stack(
             children: [
               if (isFirstMonth && !effectiveHideNavigation)
-                Align(
-                    alignment: widget.textDirection != null &&
-                            widget.textDirection == ui.TextDirection.rtl
-                        ? Alignment.topRight
-                        : Alignment.topLeft,
-                    child: backButton),
+                Align(alignment: Alignment.topLeft, child: backButton),
               Center(
                 child: Text(
                   effectiveFormatMonthYear(dateModel.month),
@@ -1424,12 +1419,7 @@ class _ShadCalendarState extends State<ShadCalendar> {
                 ),
               ),
               if (isLastMonth && !effectiveHideNavigation)
-                Align(
-                    alignment: widget.textDirection != null &&
-                            widget.textDirection == ui.TextDirection.rtl
-                        ? Alignment.topLeft
-                        : Alignment.topRight,
-                    child: forwardButton),
+                Align(alignment: Alignment.topRight, child: forwardButton),
             ],
           );
 
