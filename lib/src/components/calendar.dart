@@ -10,6 +10,7 @@ import 'package:shadcn_ui/src/theme/components/decorator.dart';
 import 'package:shadcn_ui/src/theme/theme.dart';
 import 'package:shadcn_ui/src/utils/border.dart';
 import 'package:shadcn_ui/src/utils/extensions/date_time.dart';
+import 'dart:ui' as ui;
 
 /// Encapsulates a start and end [DateTime] that represent the range of dates.
 ///
@@ -179,6 +180,7 @@ class ShadCalendar extends StatefulWidget {
     this.selectedDayButtonOusideMonthVariant,
     this.allowDeselection,
     this.groupId,
+    this.textDirection,
   })  : variant = ShadCalendarVariant.single,
         multipleSelected = null,
         onMultipleChanged = null,
@@ -254,6 +256,7 @@ class ShadCalendar extends StatefulWidget {
     this.dayButtonOutsideMonthVariant,
     this.selectedDayButtonOusideMonthVariant,
     this.groupId,
+    this.textDirection,
   })  : variant = ShadCalendarVariant.multiple,
         multipleSelected = selected,
         selected = null,
@@ -331,6 +334,7 @@ class ShadCalendar extends StatefulWidget {
     this.selectedDayButtonOusideMonthVariant,
     this.allowDeselection,
     this.groupId,
+    this.textDirection,
   })  : variant = ShadCalendarVariant.range,
         multipleSelected = null,
         selected = null,
@@ -413,6 +417,7 @@ class ShadCalendar extends StatefulWidget {
     this.selectedDayButtonOusideMonthVariant,
     this.allowDeselection,
     this.groupId,
+    this.textDirection,
   });
 
   /// {@template ShadCalendar.variant}
@@ -837,6 +842,8 @@ class ShadCalendar extends StatefulWidget {
 
   /// {@macro ShadPopover.groupId}
   final Object? groupId;
+
+  final ui.TextDirection? textDirection;
 
   @override
   State<ShadCalendar> createState() => _ShadCalendarState();
@@ -1403,7 +1410,13 @@ class _ShadCalendarState extends State<ShadCalendar> {
 
           final labelNavigation = Stack(
             children: [
-              if (isFirstMonth && !effectiveHideNavigation) backButton,
+              if (isFirstMonth && !effectiveHideNavigation)
+                Align(
+                    alignment: widget.textDirection != null &&
+                            widget.textDirection == ui.TextDirection.rtl
+                        ? Alignment.topLeft
+                        : Alignment.topRight,
+                    child: backButton),
               Center(
                 child: Text(
                   effectiveFormatMonthYear(dateModel.month),
@@ -1411,7 +1424,12 @@ class _ShadCalendarState extends State<ShadCalendar> {
                 ),
               ),
               if (isLastMonth && !effectiveHideNavigation)
-                Align(alignment: Alignment.topRight, child: forwardButton),
+                Align(
+                    alignment: widget.textDirection != null &&
+                            widget.textDirection == ui.TextDirection.rtl
+                        ? Alignment.topLeft
+                        : Alignment.topRight,
+                    child: forwardButton),
             ],
           );
 
