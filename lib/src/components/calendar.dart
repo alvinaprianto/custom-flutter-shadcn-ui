@@ -1414,8 +1414,8 @@ class _ShadCalendarState extends State<ShadCalendar> {
                 Align(
                     alignment: widget.textDirection != null &&
                             widget.textDirection == ui.TextDirection.rtl
-                        ? Alignment.topLeft
-                        : Alignment.topRight,
+                        ? Alignment.topRight
+                        : Alignment.topLeft,
                     child: backButton),
               Center(
                 child: Text(
