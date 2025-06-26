@@ -787,29 +787,29 @@ class _ShadTimePickerState extends State<ShadTimePicker> {
             }
           },
         ),
-        ShadTimePickerField(
-          focusNode: focusNodes[2],
-          label: effectiveSecondLabel,
-          controller: secondController,
-          gap: effectiveGap,
-          placeholder: effectiveSecondPlaceholder,
-          style: effectiveStyle,
-          labelStyle: effectiveLabelStyle,
-          width: effectiveFieldWidth,
-          padding: effectiveFieldPadding,
-          decoration: effectiveFieldDecoration,
-          enabled: widget.enabled,
-          onChanged: (v) {
-            if (v.isNotEmpty) {
-              controller.setSecond(int.tryParse(v));
-              if (v.length == 2 &&
-                  effectiveJumpToNextField &&
-                  widget.variant == ShadTimePickerVariant.period) {
-                periodFocusNode.requestFocus();
-              }
-            }
-          },
-        ),
+        // ShadTimePickerField(
+        //   focusNode: focusNodes[2],
+        //   label: effectiveSecondLabel,
+        //   controller: secondController,
+        //   gap: effectiveGap,
+        //   placeholder: effectiveSecondPlaceholder,
+        //   style: effectiveStyle,
+        //   labelStyle: effectiveLabelStyle,
+        //   width: effectiveFieldWidth,
+        //   padding: effectiveFieldPadding,
+        //   decoration: effectiveFieldDecoration,
+        //   enabled: widget.enabled,
+        //   onChanged: (v) {
+        //     if (v.isNotEmpty) {
+        //       controller.setSecond(int.tryParse(v));
+        //       if (v.length == 2 &&
+        //           effectiveJumpToNextField &&
+        //           widget.variant == ShadTimePickerVariant.period) {
+        //         periodFocusNode.requestFocus();
+        //       }
+        //     }
+        //   },
+        // ),
         if (widget.variant == ShadTimePickerVariant.period)
           Column(
             mainAxisAlignment: MainAxisAlignment.center,
